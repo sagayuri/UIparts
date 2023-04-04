@@ -54,3 +54,98 @@ ul.pagination {
 .navi-active {
     background-color: #ddd;
 }
+
+/*モーダル*/
+:root {
+    --scroll-y: 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .main {
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .desc {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  .dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s ease-out;
+    opacity: 1;
+    visibility: visible;
+  }
+  .dialog.__hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-out;
+  }
+  .dialog__bglayer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+  }
+  .dialog__container {
+    background-color: #fff;
+    max-width: min(500px, 100%);
+    max-height: 100vh;
+    padding: 2rem;
+    border-radius: 5px;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 1;
+  }
+  .dialog__title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .dialog__description {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+  .dialog__action {
+    margin-top: 2rem;
+  }
+  [data-open-trigger]:focus,
+  [data-close-trigger]:focus {
+    outline: 2px solid #2962ff;
+  }
+  .fixed {
+    position: fixed;
+    top: var(--scroll-y);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .user-select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  button.modal_close {
+    position: absolute;
+    top: -40%;
+    right: 0;
+    z-index: 11111111;
+    background-color: #fff;
+}

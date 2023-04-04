@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="main" class="main">
+        <h1 class="title">ダイアログの実装例</h1>
+        <p class="desc">WAI-ARIAの実装</p>
+        <div class="container">
+          <button data-open-trigger="dialog">ダイアログを開く</button>
+        </div>
+      </main>
+      <!-- //.main -->
+      <div id="dialog" class="dialog __hidden">
+        <div class="dialog__bglayer" data-close-trigger="dialog"></div>
+        <button class="modal_close" data-close-trigger="dialog"><img src="./ic_outline-close.png" alt=""></button>
+        <div class="dialog__container" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describeby="dialog-desc">
+          <h2 id="dialog-title" class="dialog__title">ダイアログです</h2>
+          <p id="dialog-desc" class="dialog__description">これはダイアログのサンプルです。</p>
+          <div class="dialog__action">
+          </div>
+        </div>
+      </div>
+      <!-- //.dialog -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./modal.js"></script>
+</body>
+</html>
+

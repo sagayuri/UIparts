@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランキングをスマホの時だけ分割して表示</title>
+    <link rel="stylesheet" href="list-pager.css">
+</head>
+<body>
+
+    <div class="rankWrapper">
+        <h3 class="rankTitle">きっず検索ランキング ベスト20</h3>
+        <div class="sp_only show_rank--upper">
+            <div class="rankInfo">
+                <div class="prev">前へ</div><p class="show_rank">1位〜10位</p><div class="prev"><a class="nextLink" href="rankList--lower">次へ</a></div>
+            </div>
+        </div>
+        <div class="sp_only show_rank--lower">
+            <div class="rankInfo">
+                <div class="prev"><a class="prevLink" href="#rankList--upper">前へ</a></div><p class="show_rank">11位〜20位</p><div class="prev">次へ</div>
+            </div>
+        </div>
+        <div class="allRankList">
+            <ol id="rankList--upper" class="rankList rankList--upper">
+                <li>
+                    <p class="rank">1位</p>
+                    <p class="rankName">寿司打</p>
+                </li>
+                <li>
+                    <p class="rank">2位</p>
+                    <p class="rankName">Popタイピング</p>
+                </li>
+                <li>
+                    <p class="rank">3位</p>
+                    <p class="rankName">スプラトゥーン3</p>
+                </li>
+                <li>
+                    <p class="rank">4位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">5位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">6位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">7位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">8位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">9位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">10位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+            </ol>
+            <ol id="rankList--lower" class="rankList rankList--lower">
+                <li>
+                    <p class="rank">11位</p>
+                    <p class="rankName">寿司打</p>
+                </li>
+                <li>
+                    <p class="rank">12位</p>
+                    <p class="rankName">Popタイピング</p>
+                </li>
+                <li>
+                    <p class="rank">13位</p>
+                    <p class="rankName">スプラトゥーン3</p>
+                </li>
+                <li>
+                    <p class="rank">14位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">15位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">16位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">17位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">18位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">19位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+                <li>
+                    <p class="rank">20位</p>
+                    <p class="rankName">Scratch</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./list-pager.js"></script>
+</body>
+</html>

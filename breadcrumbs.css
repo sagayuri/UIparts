@@ -1,0 +1,10 @@
+ol li {
+	display: inline;
+}
+ol li:after {
+	color: hsl(0, 0%, 62%);
+	content: " > ";
+}
+ol li:last-child:after {
+	content: "";
+}

@@ -1,58 +1,82 @@
-ul.pagination {
-    width: 320px;
-    padding: 0;
-    margin: 0 auto;
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+.pagerWrap {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.prev,.next {
-    padding: 4px 12px;
-    border: solid 1px #333;
-    background-color: #f5f5f5;
+.pagerWrap ul {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
-.prev {
-    margin-right: 16px;
+.pagerWrap ul li {
+  border: 1px solid #333;
+  background-color: #ddd;
 }
 
-.prev a,.next a {
-    text-decoration: none;
-    color: #333;
+.pagerWrap ul li.current {
+  background-color: #f0f0f0;
 }
 
-.next {
-    margin-left: 16px;
+.pagerWrap ul li a {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
 }
 
-.page-item {
-    padding: 4px 8px;
-    border: solid 1px #333;
-    background-color: #f5f5f5;
+.page-info {
+  width: 100%;
+  text-align: center;
 }
 
-.page-item a{
-    text-decoration: none;
-    color: #333;
+.prev-page {
+  width: 23px;
+  height: 36px;
+  background-image: url(../img/btn_prev.png);
+  background-repeat: no-repeat;
 }
 
-.pageNumbers {
-    width: 100%;
-    border: none;
-    text-align: center;
-    text-decoration: none;
+.prev-page.disabled {
+  opacity: 0.2;
 }
 
-.pageNumbers a {
-    text-decoration: none;
-    color: #333;
+.prev-page button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: inline-block;
+  background-color: transparent;
 }
 
-.navi-active {
-    background-color: #ddd;
+.next-page {
+  width: 23px;
+  height: 36px;
+  background-image: url(../img/btn_next.png);
+  background-repeat: no-repeat;
+}
+
+.next-page.disabled {
+  opacity: 0.2;
+}
+
+.next-page button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: inline-block;
+  background-color: transparent;
 }
 
 /*モーダル*/

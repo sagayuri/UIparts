@@ -1,0 +1,56 @@
+.rankList {
+    list-style-type: none;
+}
+
+.pagerWrap ul {
+    display: none;
+}
+
+.pagerWrap {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.prev-page {
+    width: 23px;
+    height: 36px;
+    background-image: url(../img/btn_prev.png);
+    background-repeat: no-repeat;
+}
+
+.prev-page.disabled {
+    opacity: 0.2;
+}
+
+.prev-page button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.next-page {
+    width: 23px;
+    height: 36px;
+    background-image: url(../img/btn_next.png);
+    background-repeat: no-repeat;
+}
+
+.next-page.disabled {
+    opacity: 0.2;
+}
+
+.next-page button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.pagerText {
+    font-size: 16px;
+    font-weight: bold;
+}

@@ -1,0 +1,6 @@
+.pagination {
+    list-style-type: none;
+    display: flex;
+    gap: 16px;
+}
+

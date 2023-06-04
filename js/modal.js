@@ -1,110 +1,77 @@
-const FOCUSABLE_ELEMENTS = [
-    "a[href]",
-    "area[href]",
-    'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
-    "select:not([disabled]):not([aria-hidden])",
-    "textarea:not([disabled]):not([aria-hidden])",
-    "button:not([disabled]):not([aria-hidden])",
-    "iframe",
-    "object",
-    "embed",
-    "[contenteditable]",
-    '[tabindex]:not([tabindex^="-"])'
-  ];
+const openButtons = document.querySelectorAll('.modal-open-btn');
 
-  const main = document.getElementById("main");
-  const dialog = document.getElementById("dialog");
-  const openTriggers = [
-    ...document.querySelectorAll(`*[data-open-trigger="dialog"]`)
-  ];
-  const closeTriggers = [
-    ...document.querySelectorAll(`*[data-close-trigger="dialog"]`)
-  ];
-  const focusableElements = [
-    ...dialog.querySelectorAll(FOCUSABLE_ELEMENTS.join(","))
-  ];
-  let focusBeforeElement = null;
-
-  const handleDialogOpen = () => {
-    if (!dialog.classList.contains("__hidden")) return;
-
-    dialog.classList.remove("__hidden");
-    focusBeforeElement = document.activeElement;
-    focusableElements[0].focus();
-
-    bgScrollBehavior("fix");
-    noSelectContents(true);
-
-    main.setAttribute("aria-hidden", "true");
-  };
-  const handleDialogClose = () => {
-    if (dialog.classList.contains("__hidden")) return;
-
-    dialog.classList.add("__hidden");
-    focusBeforeElement.focus();
-    focusBeforeElement = null;
-
-    bgScrollBehavior("scroll");
-    noSelectContents(false);
-
-    main.setAttribute("aria-hidden", "false");
-  };
-  const handleKeydownDiaogContainer = (e) => {
-    const firstFocusableElement = focusableElements[0];
-    const lastFocusableElement = focusableElements[focusableElements.length - 1];
-
-    if (e.code === "Tab") {
-      if (e.shiftKey) {
-        if (document.activeElement === firstFocusableElement) {
-          e.preventDefault();
-          lastFocusableElement.focus();
-        }
-      } else {
-        if (document.activeElement === lastFocusableElement) {
-          e.preventDefault();
-          firstFocusableElement.focus();
-        }
-      }
-    }
-    if (e.code === "Escape") {
-      handleDialogClose();
-    }
-  };
-
-  const bgScrollBehavior = (state) => {
-    const isFixed = state === "fix";
-
-    if (isFixed) {
-      const scrollY = document.documentElement.scrollTop;
-      document.body.classList.add("fixed");
-      document.documentElement.style.setProperty(
-        "--scroll-y",
-        `${scrollY * -1}px`
-      );
-    } else {
-      const scrollY = parseInt(
-        document.documentElement.style.getPropertyValue("--scroll-y") || "0"
-      );
-      document.body.classList.remove("fixed");
-      window.scrollTo(0, scrollY * -1);
-    }
-  };
-
-  const noSelectContents = (bool) => {
-    if (bool) {
-      main.classList.add("user-select-none");
-    } else {
-      main.classList.remove("user-select-none");
-    }
-  };
-
-  openTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", handleDialogOpen);
+openButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const modalId = button.getAttribute('data-modal-id');
+    openModal(modalId);
   });
-  closeTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", handleDialogClose);
+});
+
+const closeButtons = document.querySelectorAll('.close-btn');
+
+closeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    const modalId = modal.getAttribute('id');
+    closeModal(modalId);
   });
-  dialog.addEventListener("keydown", handleKeydownDiaogContainer);
+});
 
+const openModal = modalId => {
+  document.body.style.overflow = 'hidden';
 
+  const modal = document.getElementById(modalId);
+  modal.classList.add('is-show');
+
+  const modalContent = modal.querySelector('.modal-content');
+  if (modalContent.scrollHeight > modalContent.clientHeight) {
+    modalContent.style.overflowY = 'scroll';
+  }
+
+  const focusableElements = modalContent.querySelectorAll('button, input, select ,textarea ,a[href], [tabindex]:not([tabindex="-1])');
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+  const outsideFocusableElements = document.querySelectorAll(
+    'button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+  );
+  outsideFocusableElements.forEach(element => {
+    if (!modal.contains(element)) {
+      element.setAttribute('tabindex', '-1');
+    }
+  });
+
+  firstFocusableElement.focus();
+
+  lastFocusableElement.addEventListener('keydown', function(e) {
+    if(e.key === 'Tab' && ! e.shiftKey) {
+      e.preventDefault();
+      firstFocusableElement.focus();
+    }
+  });
+
+  firstFocusableElement.addEventListener('keydown', function(e) {
+    if(e.key === 'Tab' && e.shiftKey) {
+      e.preventDefault();
+      firstFocusableElement.focus();
+    }
+  });
+}
+
+const closeModal = modalId => {
+
+  document.body.style.overflow = 'auto';
+
+  const modal = document.getElementById(modalId);
+  modal.classList.remove('is-show');
+
+  const outsideFocusableElements = document.querySelectorAll(
+    'button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+  );
+  outsideFocusableElements.forEach(element => {
+    if (!modal.contains(element)) {
+      element.removeAttribute('tabindex');
+    }
+  });
+}
 
